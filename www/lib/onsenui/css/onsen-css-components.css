@@ -367,7 +367,7 @@ h4, h5, h6 {
 }
 :checked + .switch--material__toggle > .switch--material__handle {
   left: 16px;
-  background-color: #009688;
+  background-color: #2c3e50;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
       0 1px 5px 0 rgba(0, 0, 0, .12),
       0 3px 1px -2px rgba(0, 0, 0, .2);
@@ -393,7 +393,7 @@ h4, h5, h6 {
   box-shadow: 0 0 0 14px rgba(0, 0, 0, .12);
 }
 :checked + .switch--material__toggle > .switch--active__handle:before {
-  box-shadow: 0 0 0 14px alpha(#009688, 0.2);
+  box-shadow: 0 0 0 14px alpha(#2c3e50, 0.2);
 }
 .switch--material__touch {
   position: absolute;
@@ -546,8 +546,8 @@ h4, h5, h6 {
   background-image: linear-gradient(#e0e0e0, #e0e0e0);
 }
 .range--material__input {
-  background-image: -webkit-linear-gradient(#009688, #009688);
-  background-image: linear-gradient(#009688, #009688);
+  background-image: -webkit-linear-gradient(#2c3e50, #2c3e50);
+  background-image: linear-gradient(#2c3e50, #2c3e50);
   background-position: center left;
   background-size: 0% 2px;
 }
@@ -558,8 +558,8 @@ h4, h5, h6 {
   width: 14px;
   border-radius: 0;
   background-color: transparent;
-  background-image: -webkit-radial-gradient(circle cover, #009688 0%, #009688 6.6px, transparent 7.2px);
-  background-image: radial-gradient(circle cover, #009688 0%, #009688 6.6px, transparent 7.2px);
+  background-image: -webkit-radial-gradient(circle cover, #2c3e50 0%, #2c3e50 6.6px, transparent 7.2px);
+  background-image: radial-gradient(circle cover, #2c3e50 0%, #2c3e50 6.6px, transparent 7.2px);
   box-shadow: none;
 }
 .range--material__input::-moz-range-thumb,
@@ -570,7 +570,7 @@ h4, h5, h6 {
   width: 14px;
   border-radius: 0;
   background-color: transparent;
-  background-image: -moz-radial-gradient(circle cover, #009688 0%, #009688 6.6px, transparent 7.2px);
+  background-image: -moz-radial-gradient(circle cover, #2c3e50 0%, #2c3e50 6.6px, transparent 7.2px);
 }
 .range--material__input::-moz-range-track {
   background: none;
@@ -581,11 +581,11 @@ h4, h5, h6 {
   height: 12px;
   width: 12px;
   border-radius: 100%;
-  border-color: #009688;
-  background-color: #009688;
+  border-color: #2c3e50;
+  background-color: #2c3e50;
 }
 .range--material__input::-ms-fill-lower {
-  background-color: #009688;
+  background-color: #2c3e50;
 }
 .range--material__input::-ms-fill-upper {
   margin-top: -6px;
@@ -596,7 +596,7 @@ h4, h5, h6 {
   border-radius: 100%;
   height: 12px;
   width: 12px;
-  background-color: #009688;
+  background-color: #2c3e50;
   opacity: 0.2;
   -webkit-transition: -webkit-transform 0.1s linear;
   transition: -webkit-transform 0.1s linear;
@@ -618,7 +618,7 @@ h4, h5, h6 {
   border-radius: 100%;
   height: 12px;
   width: 12px;
-  background-color: #009688;
+  background-color: #2c3e50;
   opacity: 0.2;
   -webkit-transition: -webkit-transform 0.1s linear;
   transition: -webkit-transform 0.1s linear;
@@ -632,7 +632,7 @@ h4, h5, h6 {
   border-radius: 100%;
   height: 12px;
   width: 12px;
-  background-color: #009688;
+  background-color: #2c3e50;
   opacity: 0.2;
   -webkit-transition: -webkit-transform 0.1s linear;
   transition: -webkit-transform 0.1s linear;
@@ -1016,7 +1016,7 @@ h4, h5, h6 {
   border-bottom: 0;
   box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
   padding: 0;
-  background-color: #009688;
+  background-color: #2c3e50;
   background-size: 0;
 }
 /*~
@@ -1633,7 +1633,7 @@ h4, h5, h6 {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   text-transform: uppercase;
-  background-color: #009688;
+  background-color: #2c3e50;
   color: #ffffff;
   font-weight: 500;
 }
@@ -1641,7 +1641,7 @@ h4, h5, h6 {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
       0 1px 18px 0 rgba(0, 0, 0, .12),
       0 3px 5px -1px rgba(0, 0, 0, .4);
-  background-color: #009688;
+  background-color: #2c3e50;
   opacity: 1;
 }
 .button--material:focus {
@@ -1713,17 +1713,17 @@ h4, h5, h6 {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   text-transform: uppercase;
-  background-color: #009688;
+  background-color: #2c3e50;
   color: #ffffff;
   font-weight: 500;
   box-shadow: none;
   background-color: transparent;
-  color: #009688;
+  color: #2c3e50;
 }
 .button--material--flat:active {
   box-shadow: none;
   background-color: transparent;
-  color: #009688;
+  color: #2c3e50;
   outline: 0;
   opacity: 1;
   border: none;
@@ -1731,7 +1731,7 @@ h4, h5, h6 {
 .button--material--flat:focus {
   box-shadow: none;
   background-color: transparent;
-  color: #009688;
+  color: #2c3e50;
   outline: 0;
   opacity: 1;
   border: none;
@@ -2418,7 +2418,7 @@ h4, h5, h6 {
   border-bottom: 4px solid rgba(24, 103, 194, .81);
 }
 .tabbar--material {
-  background-color: #009688;
+  background-color: #2c3e50;
   border-bottom-width: 0;
   box-shadow:
     0 4px 2px -2px rgba(0, 0, 0, .14),
@@ -2967,7 +2967,7 @@ h4, h5, h6 {
   border: 2px solid #717171;
 }
 :checked + .checkbox--material__checkmark:before {
-  background-color: #009688;
+  background-color: #2c3e50;
   border: none;
 }
 .checkbox--material__checkmark:after {
@@ -3197,7 +3197,7 @@ h4, h5, h6 {
 }
 :checked + .radio-button--material__checkmark:before {
   background: transparent;
-  border: 2px solid #009688;
+  border: 2px solid #2c3e50;
 }
 .radio-button--material__input + .radio-button__checkmark:after {
   background: #717171;
@@ -3207,7 +3207,7 @@ h4, h5, h6 {
 }
 :checked + .radio-button--material__checkmark:after {
   opacity: 1;
-  background: #009688;
+  background: #2c3e50;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
@@ -4550,7 +4550,7 @@ h4, h5, h6 {
   pointer-events: none;
 }
 .text-input--material__label--active {
-  color: #009688;
+  color: #2c3e50;
   -webkit-transform: translate(0, -75%) scale(0.75);
           transform: translate(0, -75%) scale(0.75);
   -webkit-transform-origin: left top;
@@ -4561,9 +4561,9 @@ h4, h5, h6 {
   transition: transform 0.1s ease-in, color 0.1s ease-in, -webkit-transform 0.1s ease-in;
 }
 .text-input--material:focus {
-  background-image: -webkit-linear-gradient(#009688, #009688),
+  background-image: -webkit-linear-gradient(#2c3e50, #2c3e50),
     -webkit-linear-gradient(bottom, transparent 1px, #afafaf 1px);
-  background-image: linear-gradient(#009688, #009688),
+  background-image: linear-gradient(#2c3e50, #2c3e50),
     linear-gradient(to top, transparent 1px, #afafaf 1px);
   -webkit-animation: material-text-input-animate 0.3s forwards;
           animation: material-text-input-animate 0.3s forwards;
@@ -5183,7 +5183,7 @@ h4, h5, h6 {
   font-size: 14px;
   font-weight: 500;
   outline: none;
-  color: #009688
+  color: #2c3e50
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .alert-dialog-button--material {
@@ -5430,7 +5430,7 @@ h4, h5, h6 {
 .progress-bar__primary,
 .progress-bar__secondary {
   position: absolute;
-  background-color: #009688;
+  background-color: #2c3e50;
   top: 0;
   bottom: 0;
   -webkit-transition: width .3s linear;
@@ -5444,7 +5444,7 @@ h4, h5, h6 {
 .progress-bar--indeterminate:before {
   content: '';
   position: absolute;
-  background-color: #009688;
+  background-color: #2c3e50;
   top: 0;
   left: 0;
   bottom: 0;
@@ -5455,7 +5455,7 @@ h4, h5, h6 {
 .progress-bar--indeterminate:after {
   content: '';
   position: absolute;
-  background-color: #009688;
+  background-color: #2c3e50;
   top: 0;
   left: 0;
   bottom: 0;
@@ -5571,7 +5571,7 @@ h4, h5, h6 {
 .progress-circular__primary {
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
-  stroke: #009688;
+  stroke: #2c3e50;
   -webkit-transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -5676,7 +5676,7 @@ h4, h5, h6 {
   color: #ffffff;
   vertical-align: middle;
   text-align: center;
-  background-color: #009688;
+  background-color: #2c3e50;
   border: 0 solid currentColor;
   border-radius: 50%;
   overflow: hidden;
@@ -5690,7 +5690,7 @@ h4, h5, h6 {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14),
       0 3px 14px 2px rgba(0, 0, 0, .12),
       0 5px 5px -3px rgba(0, 0, 0, .4);
-  background-color: #009688;
+  background-color: #2c3e50;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
