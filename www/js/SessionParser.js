@@ -72,6 +72,17 @@ var SessionParser = function(typeOfStorage)
                 localStorage.setItem(sessionName,value);
             }
         },
+        get : function(sessionName)
+        {
+            if(isSession)
+            {
+                return sessionStorage.getItem(sessionName);
+            }
+            else
+            {
+                return localStorage.getItem(sessionName);
+            }
+        },
         isset : function(sessionName)
         {
             if(isSession)

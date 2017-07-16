@@ -78,7 +78,7 @@ var signin = function(username,password)
         success : function(data){
             if(data.success)
             {
-                sessionStorage.setItem("login","true");
+                sp.set("login","true");
                 window.location.href = "main.html";
             }
             else
@@ -90,4 +90,9 @@ var signin = function(username,password)
             message("Error connecting to server.");
         }
     });
+};
+
+var menuMode = function(menu)
+{
+    sp.set('menuMode',menu);
 };
