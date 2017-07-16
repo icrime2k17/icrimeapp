@@ -15,11 +15,40 @@ document.addEventListener('init', function(event) {
             signin(username,password);
         }
     });
+    
+    $('.continue-as-regular-user').click(function(){
+       window.location.href = "main.html"; 
+    });
 });
 
 var message = function(msg)
 {
     ons.notification.alert(msg);
+};
+
+var checklogin = function()
+{
+    if(sp.isset('login'))
+    {
+        $('.create-blotter').removeClass('hidden');
+        $('.logout').removeClass('hidden');
+    }
+    else
+    {
+        $('.report-a-crime').removeClass('hidden');
+        $('.login').removeClass('hidden');
+    }
+};
+
+var login = function()
+{
+    window.location.href = 'index.html';
+};
+
+var logout = function()
+{
+    sp.unset('login');
+    window.location.href = 'index.html';
 };
 
 var signin = function(username,password)
@@ -38,7 +67,8 @@ var signin = function(username,password)
         success : function(data){
             if(data.success)
             {
-                message("Successful");
+                sessionStorage.setItem("login","true");
+                window.location.href = "main.html";
             }
             else
             {

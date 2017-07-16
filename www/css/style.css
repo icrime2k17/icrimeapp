@@ -1,2 +1,14 @@
-/**/
+.logo-holder
+{
+    margin-top: 10vh;
+}
 
+.hidden
+{
+    display: none;
+}
+
+.signin ons-icon
+{
+    margin-right: 10px;
+}
