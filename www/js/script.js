@@ -80,7 +80,6 @@ var add_crime = function(latlong,address,mode)
 
 var selectedCrime = function(event) 
 {
-    alert(event.target.value);
     sp.set('selected_crime',event.target.value);
 }
 
@@ -158,4 +157,19 @@ var signin = function(username,password)
 var menuMode = function(menu)
 {
     sp.set('menuMode',menu);
+};
+
+var upload_picture = function(){
+    alert("uploading");
+    var fileURI = sp.get('image_captured');
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    options.params = {}; // if we need to send parameters to the server request
+    var ft = new FileTransfer();
+    var filename = makeid();
+    IMAGE_FILE_NAME = filename;
+    ft.upload(fileURI, encodeURI("http://traffic-estimate.000webhostapp.com/uploadfromcam.php?filename="+filename), win, fail, options);
+    sp.unset('image_captured');
 };
