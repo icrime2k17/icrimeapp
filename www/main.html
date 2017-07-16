@@ -1,133 +1,140 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-  <script src="components/loader.js"></script>
-  <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="js/jquery-1.12.3.min.js"></script>
-  <script src="js/MVCParser.js"></script>
-  <script src="js/SessionParser.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/script.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+        <script src="components/loader.js"></script>
+        <script src="lib/onsenui/js/onsenui.min.js"></script>
+        <script src="js/jquery-1.12.3.min.js"></script>
+        <script src="js/MVCParser.js"></script>
+        <script src="js/SessionParser.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/script.js"></script>
 
-  <link rel="stylesheet" href="components/loader.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
-  <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="components/loader.css">
+        <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+        <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+        <link rel="stylesheet" href="css/style.css">
 
-  <script>
-    ons.ready(function() {
-        console.log("Onsen UI is ready!");
-        checklogin();
-    });
+        <script>
+            ons.ready(function () {
+                console.log("Onsen UI is ready!");
+                checklogin();
+            });
 
-    window.fn = {};
-    window.fn.open = function() {
-      var menu = document.getElementById('menu');
-      menu.open();
-    };
-    window.fn.load = function(page) {
-      var content = document.getElementById('content');
-      var menu = document.getElementById('menu');
-      content
-        .load(page)
-        .then(menu.close.bind(menu));
-    };
-    
-  </script>
-</head>
-<body>
-  <ons-splitter>
-    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-      <ons-page>
-        <ons-list>
-          <ons-list-item onclick="fn.load('blotter.html')" tappable>
-            Blotters
-          </ons-list-item>
-          <ons-list-item class="create-blotter hidden" onclick="fn.load('createblotter.html')" tappable>
-            Create a Blotter
-          </ons-list-item>
-          <ons-list-item class="report-a-crime hidden" onclick="fn.load('reportcrime.html')" tappable>
-            Report a Crime
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('policestation.html')" tappable>
-            Police Stations
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('wantedlist.html')" tappable>
-            Wanted List
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('about.html')" tappable>
-            About
-          </ons-list-item>
-          <ons-list-item class="login hidden" onclick="login()" tappable>
-            Login
-          </ons-list-item>
-          <ons-list-item class="logout hidden" onclick="logout()" tappable>
-            Logout
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
-    <ons-splitter-content id="content" page="blotter.html"></ons-splitter-content>
-  </ons-splitter>
+            window.fn = {};
+            window.fn.open = function () {
+                var menu = document.getElementById('menu');
+                menu.open();
+            };
+            window.fn.load = function (page) {
+                var content = document.getElementById('content');
+                var menu = document.getElementById('menu');
+                content
+                        .load(page)
+                        .then(menu.close.bind(menu));
+            };
 
-  <ons-template id="blotter.html">
-    <ons-page>
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-          </ons-toolbar-button>
+        </script>
+    </head>
+    <body>
+        <div class="loader">
+            <div class="loader-graphic">
+                <svg class="circle-loader progress" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="15">
+                </svg>
+            </div>
         </div>
-        <div class="center">
-          Login
-        </div>
-      </ons-toolbar>
-      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-            <p align="center">
-                <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
-            </p>
-            <p align="center">
-                <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
-            </p>
-            <p align="center">
-                <ons-button class="signin">Click me</ons-button>
-            </p>
-      </p>
-    </ons-page>
-  </ons-template>
+    <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+            <ons-page>
+                <ons-list>
+                    <ons-list-item onclick="fn.load('blotter.html')" tappable>
+                        Blotters
+                    </ons-list-item>
+                    <ons-list-item class="create-blotter hidden" onclick="fn.load('createblotter.html')" tappable>
+                        Create a Blotter
+                    </ons-list-item>
+                    <ons-list-item class="report-a-crime hidden" onclick="fn.load('reportcrime.html')" tappable>
+                        Report a Crime
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('policestation.html')" tappable>
+                        Police Stations
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('wantedlist.html')" tappable>
+                        Wanted List
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('about.html')" tappable>
+                        About
+                    </ons-list-item>
+                    <ons-list-item class="login hidden" onclick="login()" tappable>
+                        Login
+                    </ons-list-item>
+                    <ons-list-item class="logout hidden" onclick="logout()" tappable>
+                        Logout
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="blotter.html"></ons-splitter-content>
+    </ons-splitter>
 
-  <ons-template id="createblotter.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Settings
-      </div>
-    </ons-toolbar>
-  </ons-page>
-  </ons-template>
+    <ons-template id="blotter.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">
+                    Login
+                </div>
+            </ons-toolbar>
+            <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+            <p align="center">
+            <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+            </p>
+            <p align="center">
+            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+            </p>
+            <p align="center">
+            <ons-button class="signin">Click me</ons-button>
+            </p>
+            </p>
+        </ons-page>
+    </ons-template>
 
-  <ons-template id="reportcrime.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        About
-      </div>
-    </ons-toolbar>
-  </ons-page>
-  </ons-template>
+    <ons-template id="createblotter.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">
+                    Settings
+                </div>
+            </ons-toolbar>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="reportcrime.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">
+                    About
+                </div>
+            </ons-toolbar>
+        </ons-page>
+    </ons-template>
 
 </body>
 </html>

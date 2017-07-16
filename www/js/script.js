@@ -23,7 +23,18 @@ document.addEventListener('init', function(event) {
 
 var message = function(msg)
 {
+    dismissLoading();
     ons.notification.alert(msg);
+};
+
+var loading = function()
+{
+    $('.loader').slideToggle();
+};
+
+var dismissLoading = function()
+{
+    $('.loader').hide();
 };
 
 var checklogin = function()
@@ -62,7 +73,7 @@ var signin = function(username,password)
         },
         dataType : "json",
         beforeSend : function(){
-            
+            loading();
         },
         success : function(data){
             if(data.success)
