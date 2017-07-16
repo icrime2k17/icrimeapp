@@ -20,16 +20,18 @@ function onCapturePhoto(fileURI) {
         clearCache();
         retries = 0;
         alert('Image successfully saved.');
+        var imageHolder = document.getElementById('captured-image-holder');
         var smallImage = document.getElementById('smallImage');
 
         // Unhide image elements
         //
-        smallImage.style.display = 'block';
+        imageHolder.style.display = 'block';
 
         // Show the captured photo
         // The in-line CSS rules are used to resize the image
         //
         smallImage.src = fileURI;
+        imageHolder.scrollTop = imageHolder.scrollHeight;
     }
  
     var fail = function (error) {

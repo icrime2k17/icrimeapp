@@ -11,6 +11,7 @@
         <script src="js/SessionParser.js"></script>
         <script src="js/config.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/camupload.js"></script>
 
         <link rel="stylesheet" href="components/loader.css">
         <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
@@ -310,14 +311,14 @@
             <h4 class="no-margin">Report</h4>
             <p id="report-address">
             </p>
-            <p>
+            <div style="height: 200px;overflow-y:scroll;">
                 <ons-select id="typeofcrime" onchange="selectedCrime(event)">
                   <option value="snatching">Snatching</option>
                   <option value="robbery">Robbery</option>
                   <option value="theft">Theft</option>
                 </ons-select>
                 <textarea id="report-detail" placeholder="Detail" rows="5" style="width:95%;"></textarea>
-                <ons-button class="continue-as-regular-user" style="width:98%;text-align:center;">
+                <ons-button onclick="capturePhoto();" class="continue-as-regular-user" style="width:98%;text-align:center;">
                     <ons-icon
                         icon="fa-camera"
                         size="20px"
@@ -325,9 +326,13 @@
                     </ons-icon>
                     Take a picture
                 </ons-button>
-            </p>
-            <p>
-              <ons-button onclick="hideDialog('report-form')">Close</ons-button>
+                <div id="captured-image-holder">
+                    <img id="smallImage" src="">
+                </div>
+            </div>
+            <p align="right">
+                <ons-button onclick="hideDialog('report-form')">Submit Report</ons-button>
+                <ons-button onclick="hideDialog('report-form')">Close</ons-button>
             </p>
           </div>
         </ons-dialog>

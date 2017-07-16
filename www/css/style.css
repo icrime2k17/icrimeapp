@@ -66,3 +66,20 @@ ons-fab
     margin-bottom: 5px;
     margin-top:0;
 }
+
+#captured-image-holder
+{
+    display:none;
+    margin-top:10px;
+    width:100%;
+    height:200px;
+    background: #000;
+    text-align: center;
+}
+
+#captured-image-holder img
+{
+    margin : 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
