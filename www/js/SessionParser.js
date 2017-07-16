@@ -62,6 +62,16 @@ var SessionParser = function(typeOfStorage)
         init : function(sessionName,dataObject){
             arrayToSession(sessionName,dataObject);
         },
+        set : function(sessionName,value){
+            if(isSession)
+            {
+                sessionStorage.setItem(sessionName,value);
+            }
+            else
+            {
+                localStorage.setItem(sessionName,value);
+            }
+        },
         isset : function(sessionName)
         {
             if(isSession)
