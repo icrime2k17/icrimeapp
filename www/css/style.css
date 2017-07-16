@@ -49,3 +49,20 @@ ons-fab
         background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
         pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
 }
+
+.no-margin
+{
+    margin: 0;
+}
+
+#report-address
+{
+    margin: 5px 0 0;
+}
+
+#typeofcrime
+{
+    width:98%;
+    margin-bottom: 5px;
+    margin-top:0;
+}

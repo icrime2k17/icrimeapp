@@ -304,5 +304,26 @@
         </ons-page>
     </ons-template>
     
+    <ons-template id="dialog.html">
+        <ons-dialog id="report-form">
+          <div style="text-align: left; padding: 10px;">
+            <h4 class="no-margin">Report</h4>
+            <p id="report-address">
+            </p>
+            <p>
+                <ons-select id="typeofcrime" onchange="selectedCrime(event)">
+                  <option value="snatching">Snatching</option>
+                  <option value="robbery">Robbery</option>
+                  <option value="theft">Theft</option>
+                </ons-select>
+                <textarea id="report-detail" placeholder="Detail" rows="5" style="width:95%;"></textarea>
+            </p>
+            <p>
+              <ons-button onclick="hideDialog('report-form')">Close</ons-button>
+            </p>
+          </div>
+        </ons-dialog>
+    </ons-template>
+    
 </body>
 </html>

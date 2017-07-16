@@ -1,4 +1,5 @@
 document.addEventListener('init', function(event) {
+    
     $('.signin').on('click', function(e) {
         var username = $('#username').val();
         var password = $('#password').val();
@@ -45,14 +46,43 @@ document.addEventListener('init', function(event) {
     });
 });
 
+var showDialog = function (id) {
+  document
+    .getElementById(id)
+    .show();
+};
+
+var hideDialog = function (id) {
+  document
+    .getElementById(id)
+    .hide();
+};
+
 var add_crime = function(latlong,address,mode)
 {
 //    modes:
 //            1 - Create blotter
-//            2 - Report Crime
-            
-    alert(address)
+//            2 - Report Crime   
+
+    var dialog = document.getElementById('report-form');
+
+        if (dialog) {
+          dialog.show();
+        }
+        else {
+          ons.createDialog('dialog.html')
+            .then(function (dialog) {
+              dialog.show();
+              $('#report-address').html(address);
+            });
+        }
 };
+
+var selectedCrime = function(event) 
+{
+    alert(event.target.value);
+    sp.set('selected_crime',event.target.value);
+}
 
 var message = function(msg)
 {
