@@ -188,11 +188,25 @@ var LoadPoliceStations = function()
         {
             if(data.success)
             {
-                dismissLoading();
+                console.log(data.list);
             }
+            
+            dismissLoading();
         },
         error : function(){
             message("Error connecting to server.");
         }
     });
 };
+
+function addMarker(location,draggable,icon) 
+{
+    var marker = new google.maps.Marker(
+    {
+      position: location,
+      map: map,
+      draggable: draggable,
+      icon: icon
+    });
+    return marker;
+}
