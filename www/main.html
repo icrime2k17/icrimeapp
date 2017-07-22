@@ -356,14 +356,17 @@
     <ons-template id="policedialog.html">
         <ons-dialog id="police-station">
           <div style="text-align: center; padding: 10px;">
-            <p>
+            <p class="station-detail">
                 <span class="s-name"></span>
                 <span class="s-address"></span>
                 <span class="s-phone"></span>
+                <a class="call-button" href="tel:09751405098">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    Call
+                </a>
             <p>
-            <a href="tel:09751405098">Call</a>
-            <p>
-              <ons-button onclick="hideDialog('police-station')">Close</ons-button>
+            <p class="call-closer">
+                <span onclick="hideDialog('police-station')"> x</span>
             </p>
           </div>
         </ons-dialog>
