@@ -34,16 +34,6 @@
                 (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
             }
             
-            function addMarker(index,location,draggable,icon) 
-            {
-                var marker = new google.maps.Marker({
-                  position: location,
-                  map: map,
-                  draggable: draggable,
-                  icon: icon
-                });
-            }
-            
             function initMap() 
             {
                 window.mapMenuMode = sp.get('menuMode');
