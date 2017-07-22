@@ -173,3 +173,27 @@ var upload_picture = function(){
     ft.upload(fileURI, encodeURI("http://traffic-estimate.000webhostapp.com/uploadfromcam.php?filename="+filename), win, fail, options);
     sp.unset('image_captured');
 };
+
+var LoadPoliceStations = function()
+{
+    $.ajax({
+        url : config.url+'/GetStations',
+        method : "POST",
+        data : null,
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data)
+        {
+            if(data.success)
+            {
+                
+            }
+        },
+        error : function(){
+            message("Error connecting to server.");
+        }
+    });
+}
+

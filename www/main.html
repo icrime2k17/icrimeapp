@@ -124,6 +124,11 @@
                   // Browser doesn't support Geolocation
                   handleLocationError(false, infoWindow, map.getCenter());
                 }
+                
+                if(sp.get('menuMode') == 4)
+                {
+                    LoadPoliceStations();
+                }
             }
             
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
