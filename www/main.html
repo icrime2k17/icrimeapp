@@ -42,7 +42,6 @@
                   draggable: draggable,
                   icon: icon
                 });
-                return marker;
             }
             
             function initMap() 
@@ -118,13 +117,18 @@
                     };
 
                     CURRENT_POSITION = pos;
-                    var BLUE_MARKER = {
+                    var USER_PIN = {
                         url: 'img/map/user.svg', // url
                         scaledSize: new google.maps.Size(50, 50), // scaled size
                         origin: new google.maps.Point(0,0), // origin
                     };
-                    addMarker(0,pos,false,BLUE_MARKER);
-
+                    
+                    var marker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        draggable: false,
+                        icon: USER_PIN
+                    });
             //          infoWindow.setPosition(pos);
             //          infoWindow.setContent('Location found.');
                     map.setCenter(pos);
