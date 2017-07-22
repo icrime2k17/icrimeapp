@@ -34,7 +34,19 @@
                 (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
             }
             
-            function initMap() {
+            function addMarker(index,location,draggable,icon) 
+            {
+                var marker = new google.maps.Marker({
+                  position: location,
+                  map: map,
+                  draggable: draggable,
+                  icon: icon
+                });
+                return marker;
+            }
+            
+            function initMap() 
+            {
                 window.mapMenuMode = sp.get('menuMode');
                 var qc = {lat: 14.676041, lng: 121.043700};
                 window.map = new google.maps.Map(document.getElementById('map'), {
@@ -136,17 +148,6 @@
         //      infoWindow.setContent(browserHasGeolocation ?
         //                            'Error: The Geolocation service failed.' :
         //                            'Error: Your browser doesn\'t support geolocation.');
-            }
-            
-            function addMarker(index,location,draggable,icon) 
-            {
-                var marker = new google.maps.Marker({
-                  position: location,
-                  map: map,
-                  draggable: draggable,
-                  icon: icon
-                });
-                return marker;
             }
 
 
