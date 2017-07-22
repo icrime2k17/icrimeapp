@@ -188,7 +188,20 @@ var LoadPoliceStations = function()
         {
             if(data.success)
             {
-                console.log(data.list);
+                $.each(data.list, function(key,value){
+                    var pos = {
+                      lat: parseFloat(value.g_lat),
+                      lng: parseFloat(value.g_long)
+                    };
+                    
+                    var STATION_PIN = {
+                        url: 'img/map/station.svg', // url
+                        scaledSize: new google.maps.Size(50, 50), // scaled size
+                        origin: new google.maps.Point(0,0), // origin
+                    };
+                    
+                    addMarker(pos,false,STATION_PIN);
+                });
             }
             
             dismissLoading();
@@ -206,7 +219,8 @@ function addMarker(location,draggable,icon)
       position: location,
       map: map,
       draggable: draggable,
-      icon: icon
+      icon: icon,
+      optimized: false
     });
     return marker;
 }
