@@ -188,7 +188,7 @@ var LoadPoliceStations = function()
         {
             if(data.success)
             {
-                
+                dismissLoading();
             }
         },
         error : function(){
