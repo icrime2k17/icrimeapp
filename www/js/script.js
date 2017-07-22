@@ -196,14 +196,3 @@ var LoadPoliceStations = function()
         }
     });
 };
-
-function addMarker(index,location,draggable,icon) {
-    var marker = new google.maps.Marker({
-      position: location,
-      map: map,
-      draggable: draggable,
-      icon: icon
-    });
-    return marker;
-}
-

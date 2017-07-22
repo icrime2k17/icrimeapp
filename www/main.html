@@ -137,12 +137,26 @@
         //                            'Error: The Geolocation service failed.' :
         //                            'Error: Your browser doesn\'t support geolocation.');
             }
+            
+            function addMarker(index,location,draggable,icon) 
+            {
+                var marker = new google.maps.Marker({
+                  position: location,
+                  map: map,
+                  draggable: draggable,
+                  icon: icon
+                });
+                return marker;
+            }
+
 
             window.fn = {};
             window.fn.open = function () {
                 var menu = document.getElementById('menu');
                 menu.open();
             };
+            
+            
             window.fn.load = function (page,menu) {
                 var menus = [];
                 menus[1] = "Blotter";
