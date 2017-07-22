@@ -83,3 +83,14 @@ ons-fab
     max-height: 100%;
     max-width: 100%;
 }
+
+#police-station span
+{
+    display: block;
+}
+
+#police-station span.s-name
+{
+    font-size: 16px;
+    font-weight: 700;
+}

@@ -188,6 +188,7 @@ var LoadPoliceStations = function()
         {
             if(data.success)
             {
+                STATION_LIST = data.list;
                 $.each(data.list, function(key,value){
                     var pos = {
                       lat: parseFloat(value.g_lat),
@@ -200,7 +201,7 @@ var LoadPoliceStations = function()
                         origin: new google.maps.Point(0,0), // origin
                     };
                     
-                    addMarker(pos,false,STATION_PIN);
+                    addMarker(pos,false,STATION_PIN,key);
                 });
             }
             
@@ -212,7 +213,7 @@ var LoadPoliceStations = function()
     });
 };
 
-function addMarker(location,draggable,icon) 
+var addMarker = function(location,draggable,icon,key) 
 {
     var marker = new google.maps.Marker(
     {
@@ -222,5 +223,35 @@ function addMarker(location,draggable,icon)
       icon: icon,
       optimized: false
     });
+    
+    google.maps.event.addListener(marker, 'click', function () 
+    {
+        showStationDialog(key);
+    });
+    
     return marker;
-}
+};
+
+var showStationDialog = function(key)
+{
+    var dialog = document.getElementById('police-station');
+
+    if (dialog) {
+        dialog.show();
+        RenderStationData(key);
+    } else {
+        ons.createDialog('policedialog.html')
+                .then(function (dialog) {
+                    dialog.show();
+                    RenderStationData(key);
+                });
+    }
+};
+
+var RenderStationData = function(key)
+{
+    var data = STATION_LIST[key];
+    $("#police-station .s-name").html(data.station);
+    $("#police-station .s-address").html(data.address);
+    $("#police-station .s-phone").html(data.phone);
+};
