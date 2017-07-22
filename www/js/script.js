@@ -255,3 +255,16 @@ var RenderStationData = function(key)
     $("#police-station .s-address").html(data.address);
     $("#police-station .s-phone").html(data.phone);
 };
+
+var CallNumber = function(number)
+{
+    window.plugins.CallNumber.callNumber(
+    function(){
+        //success
+    },
+    function(){
+        //error
+        alert("Error contacting the number");
+    }, number, true);
+    
+};
