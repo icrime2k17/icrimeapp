@@ -195,5 +195,15 @@ var LoadPoliceStations = function()
             message("Error connecting to server.");
         }
     });
+};
+
+function addMarker(index,location,draggable,icon) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable: draggable,
+      icon: icon
+    });
+    return marker;
 }
 
