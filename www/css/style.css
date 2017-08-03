@@ -115,7 +115,8 @@ ons-fab
 
 .call-closer span
 {
-    padding: 5px 10px;
+    padding: 10px 15px 10px;
+    display: block;
     font-family: sans-serif;
     text-transform: lowercase;
     font-weight: bold;
@@ -165,4 +166,10 @@ ons-fab
 .wanted-view-list
 {
     margin: 20px 10px 30px;
+}
+
+#report-form .dialog
+{
+    height: auto;
+    width: 90%;
 }

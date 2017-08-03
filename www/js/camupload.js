@@ -20,6 +20,7 @@ function onCapturePhoto(fileURI) {
         clearCache();
         retries = 0;
         alert('Image successfully saved.');
+        dismissLoading();
         var imageHolder = document.getElementById('captured-image-holder');
         var smallImage = document.getElementById('smallImage');
 
@@ -55,7 +56,9 @@ function onCapturePhoto(fileURI) {
     var ft = new FileTransfer();
     var filename = makeid();
     IMAGE_FILE_NAME = filename;
-    ft.upload(fileURI, encodeURI("http://traffic-estimate.000webhostapp.com/uploadfromcam.php?filename="+filename), win, fail, options);
+    sp.set('temp_cam_upload',filename);
+    loading();
+    ft.upload(fileURI, encodeURI(config.url+"/uploadfromcam/?filename="+filename), win, fail, options);
 }
  
 function capturePhoto() {
@@ -63,7 +66,6 @@ function capturePhoto() {
         quality: 100,
         destinationType: destinationType.FILE_URI
     });
-    loading();
 }
  
 function onFail(message) {
