@@ -213,6 +213,45 @@ var LoadPoliceStations = function()
     });
 };
 
+var LoadBlotters = function()
+{
+    $.ajax({
+        url : config.url+'/GetBlotters',
+        method : "POST",
+        data : null,
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data)
+        {
+            if(data.success)
+            {
+                BLOTTER_LIST = data.list;
+                $.each(data.list, function(key,value){
+                    var pos = {
+                      lat: parseFloat(value.g_lat),
+                      lng: parseFloat(value.g_long)
+                    };
+                    
+                    var BLOTTER_PIN = {
+                        url: 'img/map/crimepin.svg', // url
+                        scaledSize: new google.maps.Size(50, 50), // scaled size
+                        origin: new google.maps.Point(0,0), // origin
+                    };
+                    
+                    addMarker(pos,false,BLOTTER_PIN,key);
+                });
+            }
+            
+            dismissLoading();
+        },
+        error : function(){
+            message("Error connecting to server.");
+        }
+    });
+};
+
 var addMarker = function(location,draggable,icon,key) 
 {
     var marker = new google.maps.Marker(
@@ -224,10 +263,20 @@ var addMarker = function(location,draggable,icon,key)
       optimized: false
     });
     
-    google.maps.event.addListener(marker, 'click', function () 
+    if(sp.get('menuMode') == 1)
     {
-        showStationDialog(key);
-    });
+        google.maps.event.addListener(marker, 'click', function () 
+        {
+            showBlotterDialog(key);
+        });
+    }
+    else if(sp.get('menuMode') == 4)
+    {
+        google.maps.event.addListener(marker, 'click', function () 
+        {
+            showStationDialog(key);
+        });
+    }
     
     return marker;
 };
@@ -248,6 +297,22 @@ var showStationDialog = function(key)
     }
 };
 
+var showBlotterDialog = function(key)
+{
+    var dialog = document.getElementById('blotter-info');
+
+    if (dialog) {
+        dialog.show();
+        RenderBlotterData(key);
+    } else {
+        ons.createDialog('blotterdialog.html')
+                .then(function (dialog) {
+                    dialog.show();
+                    RenderBlotterData(key);
+                });
+    }
+};
+
 var RenderStationData = function(key)
 {
     var data = STATION_LIST[key];
@@ -255,4 +320,13 @@ var RenderStationData = function(key)
     $("#police-station .s-address").html(data.address);
     $("#police-station .s-phone").html(data.phone);
     $("#police-station .call-button").attr('href','tel:'+data.phone);
+};
+
+var RenderBlotterData = function(key)
+{
+    var data = BLOTTER_LIST[key];
+    $("#blotter-info .b-incident").html(data.incident);
+    $("#blotter-info .b-date").html("Date: "+data.date_of_incident);
+    $("#blotter-info .b-time").html("Time: "+data.time_of_incident);
+    $("#blotter-info .b-place").html(data.place_of_incident);
 };

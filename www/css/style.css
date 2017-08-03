@@ -130,3 +130,16 @@ ons-fab
 {
     margin-top: 10px;
 }
+
+.blotter-detail span
+{
+    display: block;
+    text-align: center;
+    margin: 5px;
+}
+
+.blotter-detail .b-incident
+{
+    font-weight: 700;
+    text-transform: uppercase;
+}
