@@ -252,6 +252,37 @@ var LoadBlotters = function()
     });
 };
 
+
+var LoadWantedList = function()
+{
+    $.ajax({
+        url : config.url+'/GetWanteds',
+        method : "POST",
+        data : null,
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data)
+        {
+            if(data.success)
+            {
+                WANTED_LIST = data.list;
+                console.log(WANTED_LIST);
+                $(".wanted-view-list").html("");
+                $.each(data.list, function(key,value){
+                    $(".wanted-view-list").append(mvc.LoadView('Wanted/WantedList',value));
+                });
+            }
+            
+            dismissLoading();
+        },
+        error : function(){
+            message("Error connecting to server.");
+        }
+    });
+};
+
 var addMarker = function(location,draggable,icon,key) 
 {
     var marker = new google.maps.Marker(

@@ -167,7 +167,14 @@
                 var content = document.getElementById('content');
                 var menu = document.getElementById('menu');
                 content
-                        .load(page)
+                        .load(page,{
+                            callback :function(){
+                                if(page == 'wantedlist.html')
+                                {
+                                    LoadWantedList();
+                                }
+                            }
+                        })
                         .then(menu.close.bind(menu));
                     loadGoogleMaps();
             };
@@ -306,6 +313,8 @@
                     Wanted List
                 </div>
             </ons-toolbar>
+            <div class="wanted-view-list">
+            </div>
         </ons-page>
     </ons-template>
     

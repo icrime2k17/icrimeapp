@@ -5,7 +5,7 @@ String.prototype.replaceAll = function(str1, str2, ignore)
 
 window.MVCParser = function () {
     var private = {
-        ViewsDirectory: '../user_sales_rep/'
+        ViewsDirectory: './views/'
     };
 
     return{

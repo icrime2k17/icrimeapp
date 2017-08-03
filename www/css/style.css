@@ -143,3 +143,26 @@ ons-fab
     font-weight: 700;
     text-transform: uppercase;
 }
+
+.wanted-view-list span
+{
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+.w-image
+{
+    height: 150px;
+    margin: 20px;
+}
+
+.w-reward
+{
+    font-weight: 700;
+}
+
+.wanted-view-list
+{
+    margin: 20px 10px 30px;
+}
