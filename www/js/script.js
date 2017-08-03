@@ -44,6 +44,10 @@ document.addEventListener('init', function(event) {
             }
         });
     });
+    
+    $("#submit-report").click(function(){
+        SubmitReport();
+    });
 });
 
 var showDialog = function (id) {
@@ -273,6 +277,40 @@ var LoadWantedList = function()
                 $.each(data.list, function(key,value){
                     $(".wanted-view-list").append(mvc.LoadView('Wanted/WantedList',value));
                 });
+            }
+            
+            dismissLoading();
+        },
+        error : function(){
+            message("Error connecting to server.");
+        }
+    });
+};
+
+var SubmitReport = function()
+{
+    coordinates = map.getCenter();
+    console.log(coordinates);
+    $.ajax({
+        url : config.url+'/SubmitReport',
+        method : "POST",
+        data : {
+            crime : $("#typeofcrime").val(),
+            details : $("#report-detail").val(),
+            coordinates : map.getCenter(),
+            address : $("#report-address").html(),
+            image : sp.get('temp_cam_upload')
+        },
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data)
+        {
+            if(data.success)
+            {
+                message("Report successfully submitted.");
+                hideDialog('report-form');
             }
             
             dismissLoading();
