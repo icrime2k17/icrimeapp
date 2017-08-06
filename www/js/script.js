@@ -289,17 +289,22 @@ var LoadWantedList = function()
 
 var SubmitReport = function()
 {
-    coordinates = map.getCenter();
-    console.log(coordinates);
+    var img = '';
+    if(sp.isset('temp_cam_upload'))
+    {
+        img = sp.get('temp_cam_upload');
+    }
+    
     $.ajax({
         url : config.url+'/SubmitReport',
         method : "POST",
         data : {
             crime : $("#typeofcrime").val(),
             details : $("#report-detail").val(),
-            coordinates : map.getCenter(),
+            g_lat : map.getCenter().lat(),
+            g_long : map.getCenter().lng(),
             address : $("#report-address").html(),
-            image : sp.get('temp_cam_upload')
+            image : img
         },
         dataType : "json",
         beforeSend : function(){
@@ -309,6 +314,7 @@ var SubmitReport = function()
         {
             if(data.success)
             {
+                sp.unset('temp_cam_upload');
                 message("Report successfully submitted.");
                 hideDialog('report-form');
             }

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">-->
+        <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
         <script src="components/loader.js"></script>
         <script src="lib/onsenui/js/onsenui.min.js"></script>
         <script src="js/jquery-1.12.3.min.js"></script>
@@ -366,7 +366,7 @@
                 </div>
             </div>
             <p align="right">
-                <ons-button id="submit-report">Submit Report</ons-button>
+                <ons-button id="submit-report" onclick="SubmitReport()">Submit Report</ons-button>
             </p>
             <p class="call-closer">
                 <span onclick="hideDialog('report-form')">
