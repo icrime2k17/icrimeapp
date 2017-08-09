@@ -72,6 +72,7 @@ var add_crime = function(latlong,address,mode)
 
         if (dialog) {
           dialog.show();
+          $('#report-address').html(address);
         }
         else {
           ons.createDialog('dialog.html')
