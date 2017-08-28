@@ -112,13 +112,15 @@ var checklogin = function()
 {
     if(sp.isset('login'))
     {
-        $('.create-blotter').removeClass('hidden');
         $('.logout').removeClass('hidden');
-    }
-    else
-    {
-        $('.report-a-crime').removeClass('hidden');
-        $('.login').removeClass('hidden');
+        if(sp.get('user_type') == 'c')
+        {
+            $('.report-a-crime').removeClass('hidden');
+        }
+        else
+        {
+            $('.create-blotter').removeClass('hidden');
+        }
     }
 };
 
@@ -150,6 +152,8 @@ var signin = function(username,password)
             if(data.success)
             {
                 sp.set("login","true");
+                sp.set('user_id',data.id);
+                sp.set('user_type',data.type);
                 window.location.href = "main.html";
             }
             else
@@ -486,6 +490,7 @@ var Register = function(data)
             if(data.success)
             {
                 sp.set('user_id',data.id);
+                sp.set('user_type','c');
                 sp.set("login","true");
                 window.location.href = "main.html";
             }
