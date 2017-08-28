@@ -17,8 +17,12 @@ document.addEventListener('init', function(event) {
         }
     });
     
-    $('.continue-as-regular-user').click(function(){
-       window.location.href = "main.html"; 
+    $('.signin-btn').click(function(){
+       window.location.href = "signup.html"; 
+    });
+    
+    $('.register-btn').click(function(){
+        SignUp();
     });
     
     $(".add-crime").click(function(){
@@ -405,4 +409,95 @@ var RenderBlotterData = function(key)
     $("#blotter-info .b-date").html("Date: "+data.date_of_incident);
     $("#blotter-info .b-time").html("Time: "+data.time_of_incident);
     $("#blotter-info .b-place").html(data.place_of_incident);
+};
+
+var SignUp = function()
+{
+    var lastname = $("#lastname").val();
+    var firstname = $("#firstname").val();
+    var address = $("#address").val();
+    var mobile = $("#mobile").val();
+    var username = $("#signup_username").val();
+    var password = $("#signup_password").val();
+    var cpassword = $("#signup_cpassword").val();
+
+    if(lastname.trim() == '')
+    {
+        ons.notification.alert("Please fill-out last name.");
+    }
+    else if(firstname.trim() == '')
+    {
+        ons.notification.alert("Please fill-out first name.");
+    }
+    else if(mobile.trim() == '')
+    {
+        ons.notification.alert("Please fill-out mobile number.");
+    }
+    else if(mobile.length < 11)
+    {
+        ons.notification.alert("Invalid mobile number.");
+    }
+    else if(address.trim() == '')
+    {
+        ons.notification.alert("Please fill-out address.");
+    }
+    else if(username.trim() == '')
+    {
+        ons.notification.alert("Please fill-out username.");
+    }
+    else if(password.trim() == '')
+    {
+        ons.notification.alert("Please fill-out password.");
+    }
+    else if(password.trim().length < 6)
+    {
+        ons.notification.alert("Please fill-out password with atleast 6 characters.");
+    }
+    else if(password != cpassword)
+    {
+        ons.notification.alert("Password and Confirm password do not match.");
+    }
+    else
+    {
+        var data = {
+            lastname : lastname,
+            firstname : firstname,
+            address : address,
+            mobile : mobile,
+            username : username,
+            password : password
+        };
+
+        Register(data);
+    }
+};
+
+var Register = function(data)
+{
+    $.ajax({
+        url : config.url+'/Register',
+        method : "POST",
+        data : data,
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data){
+            if(data.success)
+            {
+                sp.set('user_id',data.id);
+                sp.set("login","true");
+                window.location.href = "main.html";
+            }
+            else
+            {
+                ons.notification.alert(data.message);
+            }
+            dismissLoading();
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
+            dismissLoading();
+        }
+    });
 };

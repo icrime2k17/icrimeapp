@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="js/jquery-1.12.3.min.js"></script>
+  <script src="js/SessionParser.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <style>
+        .signup-form
+        {
+              padding: 15px 20px;
+        }
+
+        ons-input
+        {
+            width: 100%;
+        }
+  </style>
+
+  <script>
+    ons.platform.select('android');
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+    });
+  </script>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-graphic">
+            <svg class="circle-loader progress" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="15">
+            </svg>
+        </div>
+    </div>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href = 'index.html'"></ons-back-button></div>
+            <div class="center">iCrime Sign Up</div>
+        </ons-toolbar>
+        <div class="signup-form">
+            <p align="center">
+                <ons-input id="lastname" modifier="underbar" placeholder="Last name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="firstname" modifier="underbar" placeholder="First name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input type="number" id="mobile" modifier="underbar" placeholder="Mobile Number" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="address" modifier="underbar" placeholder="Address" float></ons-input>
+            </p><p align="center">
+                <ons-input id="signup_username" modifier="underbar" placeholder="Username" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="signup_password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="signup_cpassword" modifier="underbar" type="password" placeholder="Confirm Password" float></ons-input>
+            </p>
+            <p align="right">
+                <ons-button class="register-btn">Submit</ons-button>
+            </p>
+        </div>
+    </ons-page>
+</body>
+</html>
