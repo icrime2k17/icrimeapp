@@ -313,7 +313,8 @@ var SubmitReport = function()
             g_lat : map.getCenter().lat(),
             g_long : map.getCenter().lng(),
             address : $("#report-address").html(),
-            image : img
+            image : img,
+            user_id : sp.get('user_id')
         },
         dataType : "json",
         beforeSend : function(){
