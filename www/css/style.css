@@ -173,3 +173,14 @@ ons-fab
     height: auto;
     width: 90%;
 }
+
+.comment-count
+{
+    padding: 10px;
+    background: #566573;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 15px;
+    text-align: center;
+}

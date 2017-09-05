@@ -507,3 +507,42 @@ var Register = function(data)
         }
     });
 };
+
+var LoadReportHistory = function()
+{
+    var id = sp.get('user_id');
+    $.ajax({
+        url : config.url+'/GetReportHistory',
+        method : "POST",
+        data : {
+            id : id
+        },
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data){
+            if(data.success)
+            {
+                var ListView = '';
+                $.each(data.list,function(key,value){
+                    ListView += mvc.LoadView('CrimeReportHistory/ListItem',value);
+                });
+                $("#report-history-container").html(ListView);
+            }
+            else
+            {
+                ons.notification.alert("data.message");
+                if(data.goback)
+                {
+                    fn.load("reportcrime.html");
+                }
+            }
+            dismissLoading();
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
+            dismissLoading();
+        }
+    });
+};
