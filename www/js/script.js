@@ -68,6 +68,11 @@ document.addEventListener('init', function(event) {
             postComment(comment);
         }
     });
+    
+    $("body").on("click",".call-button",function(){
+        var number = $(this).attr('data-number');
+        callStation(number);
+    });
 });
 
 var showDialog = function (id) {
@@ -420,7 +425,7 @@ var RenderStationData = function(key)
     $("#police-station .s-name").html(data.station);
     $("#police-station .s-address").html(data.address);
     $("#police-station .s-phone").html(data.phone);
-    $("#police-station .call-button").attr('href','tel:'+data.phone);
+    $("#police-station .call-button").attr('data-number',data.phone);
 };
 
 var RenderBlotterData = function(key)
@@ -643,4 +648,13 @@ var postComment = function(comment)
             ons.notification.alert("Error connecting to server.");
         }
     });
+};
+
+
+var callStation = function(number) 
+{
+    window.plugins.webintent.startActivity({
+        action: window.plugins.webintent.ACTION_VIEW,
+        url: "tel:"+number}
+    );
 };
