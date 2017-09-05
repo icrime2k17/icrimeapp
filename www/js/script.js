@@ -52,6 +52,22 @@ document.addEventListener('init', function(event) {
     $("#submit-report").click(function(){
         SubmitReport();
     });
+    
+    $("#report-history-container").on("click",".report-history-item",function(){
+        var key = $(this).attr('data-key');
+        sp.set('current_crime_report_id',REPORT_HISTORY_LIST[key].id);
+        sp.set('current_crime_report',JSON.stringify(REPORT_HISTORY_LIST[key]));
+        fn.load("reporthistorydetail.html");
+    });
+    
+    $("#comment-btn").click(function(){
+        var comment = $("#comment-box").val();
+        $("#comment-box").val('');
+        if(comment.trim() != '')
+        {
+            postComment(comment);
+        }
+    });
 });
 
 var showDialog = function (id) {
@@ -524,25 +540,107 @@ var LoadReportHistory = function()
         success : function(data){
             if(data.success)
             {
+                REPORT_HISTORY_LIST = data.list;
                 var ListView = '';
                 $.each(data.list,function(key,value){
+                    value.key = key;
                     ListView += mvc.LoadView('CrimeReportHistory/ListItem',value);
                 });
                 $("#report-history-container").html(ListView);
             }
             else
             {
-                ons.notification.alert("data.message");
-                if(data.goback)
-                {
-                    fn.load("reportcrime.html");
-                }
+                ons.notification.alert(data.message);
             }
             dismissLoading();
         },
         error : function(){
             ons.notification.alert("Error connecting to server.");
             dismissLoading();
+        }
+    });
+};
+
+var LoadReportDetail = function()
+{
+    var reportDetailObject = JSON.parse(sp.get('current_crime_report'));
+    if(reportDetailObject.image != '')
+    {
+        reportDetailObject.image_view = "<img src='"+reportDetailObject.image+"'>";
+    }
+    else
+    {
+        reportDetailObject.image_view = "<i>No image.</i>";
+    }
+    
+    var reportDetailView = mvc.LoadView('CrimeReportHistory/ReportDetail',reportDetailObject);
+    
+    $("#report-detail-container").html(reportDetailView);
+    
+    RunCommentLoader();
+};
+
+var RunCommentLoader = function()
+{
+    if($("#report-comments").length > 0)
+    {
+        $.ajax({
+            url : config.url+'/GetReportComments',
+            method : "POST",
+            data : {
+                id : sp.get('current_crime_report_id')
+            },
+            dataType : "json",
+            beforeSend : function(){
+            },
+            success : function(data){
+                if(data.success)
+                {
+//                    console.log(data);
+                    var ListView = '';
+                    $.each(data.comments,function(key,value){
+                        value.key = key;
+                        ListView += mvc.LoadView('CrimeReportHistory/CommentItem',value);
+                    });
+                    $("#report-comments").html(ListView);
+                    
+                    setTimeout(RunCommentLoader(),5000);
+                }
+                else
+                {
+                    ons.notification.alert(data.message);
+                }
+            },
+            error : function(){
+                ons.notification.alert("Error connecting to server.");
+            }
+        });
+    }
+};
+
+var postComment = function(comment)
+{
+    $.ajax({
+        url : config.url+'/PostComment',
+        method : "POST",
+        data : {
+            id : sp.get('current_crime_report_id'),
+            comment : comment,
+            user_id : sp.get('user_id')
+        },
+        dataType : "json",
+        beforeSend : function(){
+        },
+        success : function(data){
+            if(data.success)
+            {
+            }
+            else
+            {
+            }
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
         }
     });
 };

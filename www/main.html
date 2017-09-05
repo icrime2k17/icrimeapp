@@ -178,6 +178,10 @@
                                 {
                                     LoadReportHistory();
                                 }
+                                else if(page == 'reporthistorydetail.html')
+                                {
+                                    LoadReportDetail();
+                                }
                             }
                         })
                         .then(menu.close.bind(menu));
@@ -437,6 +441,32 @@
             </ons-toolbar>
             <ons-list id="report-history-container">
             </ons-list>
+        </ons-page>
+    </ons-template>
+    
+    <ons-template id="reporthistorydetail.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button onclick="fn.load('reporthistory.html')"></ons-back-button>
+                </div>
+                <div class="center">
+                    Crime Report Details
+                </div>
+            </ons-toolbar>
+            <ons-list id="report-detail-container">
+            </ons-list>
+            <span class="comment-label">Comments:</span>
+            <ons-list id="report-comments">
+            </ons-list>
+            <div class="comment-option">
+                <p>
+                    <textarea id="comment-box" placeholder="Comment"></textarea>
+                    <ons-button id="comment-btn">
+                        <ons-icon icon="md-arrow-forward"></ons-icon>
+                    </ons-button>
+                </p>
+            </div>
         </ons-page>
     </ons-template>
     
