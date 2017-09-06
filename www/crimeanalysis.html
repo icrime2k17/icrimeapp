@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>-->
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="js/jquery-1.12.3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+  <script src="js/d3pie.min.js"></script>
+  <script src="js/SessionParser.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/crimeanalysis.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <style>
+        .signup-form
+        {
+              padding: 15px 20px;
+        }
+
+        ons-input
+        {
+            width: 100%;
+        }
+  </style>
+
+  <script>
+    ons.platform.select('android');
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+      LoadBlotterYears();
+    });
+  </script>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-graphic">
+            <svg class="circle-loader progress" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="15">
+            </svg>
+        </div>
+    </div>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href = 'main.html'"></ons-back-button></div>
+            <div class="center">Crime Analysis</div>
+        </ons-toolbar>
+        <div class="content">
+            <div class="pie-data-container">
+                <div id="myPie">
+                </div>
+                <span class="no-data-found">No data found...</span>
+            </div>
+            <div class="crime-sort-option">
+                <div class="no-gutter">
+                    <label>Sort by</label>
+                    <ons-select class="form-control" id="sort_selector">
+                        <option value="1">Per Day</option>
+                        <option value="2">Per Week</option>
+                        <option value="3" selected>Per Month</option>
+                        <option value="4">Per Year</option>
+                    </ons-select>
+                </div>
+                <div class="no-gutter month-holder">
+                    <label>Month</label>
+                    <ons-select class="form-control" id="month_selector">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </ons-select>
+                </div>
+                <div class="no-gutter year-holder">
+                    <label>Year</label>
+                    <ons-select class="form-control" id="year_selector">
+                    </ons-select>
+                </div>
+                <div class="no-gutter day-holder">
+                    <label>Day</label>
+                    <ons-input type="date" class="form-control" id="day_selector"></ons-input>
+                </div>
+                <div class="no-gutter week-holder">
+                    <label>Week</label>
+                    <ons-input type="week" class="form-control" id="week_selector"></ons-input>
+                </div>
+                <div class="no-gutter">
+                    <ons-button id="show_results">SHOW RESULTS</ons-button>
+                </div>
+            </div>
+        </div>
+    </ons-page>
+</body>
+</html>

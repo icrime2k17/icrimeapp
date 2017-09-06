@@ -218,3 +218,37 @@ ons-fab
 {
     padding: 15px;
 }
+
+.crime-sort-option
+{
+    padding: 20px;
+}
+
+.crime-sort-option label, .crime-sort-option ons-input, .crime-sort-option ons-select
+{
+    width: 100%;
+    display: block;
+}
+
+.crime-sort-option label
+{
+    font-weight: bold;
+}
+
+.crime-sort-option ons-input, .crime-sort-option ons-select
+{
+    margin-bottom: 10px;
+}
+
+.no-data-found
+{
+    display: block;
+    padding: 50px 20px 20px;
+    text-align: center;
+}
+
+#myPie svg
+{
+    margin: 0 auto;
+    display: block;
+}

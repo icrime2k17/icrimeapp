@@ -746,3 +746,28 @@ var callStation = function(number)
         url: "tel:"+number}
     );
 };
+
+var LoadBlotterYears = function()
+{
+    $.ajax({
+        url : config.url+'/GetBlotterYears',
+        method : "POST",
+        data : null,
+        dataType : "json",
+        beforeSend : function(){
+        },
+        success : function(data){
+            if(data.success)
+            {
+                $("#year_selector select").append(data.list);
+                initializeCrimeAnalysis(parseInt(data.current_month));
+            }
+            else
+            {
+            }
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
+        }
+    });
+};

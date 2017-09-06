@@ -204,6 +204,9 @@
                     <ons-list-item onclick = "fn.load('blotter.html',1)" tappable>
                         Blotters
                     </ons-list-item>
+                    <ons-list-item onclick = "window.location.href = 'crimeanalysis.html'" tappable>
+                        Crime Analysis
+                    </ons-list-item>
                     <ons-list-item class="create-blotter hidden" onclick="fn.load('createblotter.html',2)" tappable>
                         Create a Blotter
                     </ons-list-item>
@@ -233,7 +236,7 @@
         </ons-splitter-side>
         <ons-splitter-content id="content" page="blotter.html"></ons-splitter-content>
     </ons-splitter>
-
+    
     <ons-template id="blotter.html">
         <ons-page>
             <ons-toolbar>
