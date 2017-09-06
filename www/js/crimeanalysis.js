@@ -42,7 +42,7 @@ var initializeCrimeAnalysis = function(current_month)
                             },
                             size: {
                                 canvasHeight: 300,
-                                canvasWidth: 300
+                                canvasWidth: 350
                             },
                             data: {
                                     content: data.content
@@ -158,7 +158,7 @@ var RenderPieByMonth = function()
                                 },
                                 size: {
                                     canvasHeight: 300,
-                                    canvasWidth: 300
+                                    canvasWidth: 350
                                 },
                                 data: {
                                         content: data.content
@@ -222,7 +222,7 @@ var RenderPieByYear = function()
                                 },
                                 size: {
                                     canvasHeight: 300,
-                                    canvasWidth: 300
+                                    canvasWidth: 350
                                 },
                                 data: {
                                         content: data.content
@@ -286,7 +286,7 @@ var RenderPieByWeek = function()
                                 },
                                 size: {
                                     canvasHeight: 300,
-                                    canvasWidth: 300
+                                    canvasWidth: 350
                                 },
                                 data: {
                                         content: data.content
@@ -350,7 +350,7 @@ var RenderPieByDay = function()
                                 },
                                 size: {
                                     canvasHeight: 300,
-                                    canvasWidth: 300
+                                    canvasWidth: 350
                                 },
                                 data: {
                                         content: data.content
