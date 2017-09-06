@@ -25,6 +25,10 @@ document.addEventListener('init', function(event) {
         SignUp();
     });
     
+    $('.update-account-btn').click(function(){
+        UpdateAccount();
+    });
+    
     $(".add-crime").click(function(){
         var center = map.getCenter();
         var mode = $(this).attr('data-mode');
@@ -515,6 +519,90 @@ var Register = function(data)
                 sp.set('user_type','c');
                 sp.set("login","true");
                 window.location.href = "main.html";
+            }
+            else
+            {
+                ons.notification.alert(data.message);
+            }
+            dismissLoading();
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
+            dismissLoading();
+        }
+    });
+};
+
+var UpdateAccount = function()
+{
+    var lastname = $("#lastname").val();
+    var firstname = $("#firstname").val();
+    var address = $("#address").val();
+    var mobile = $("#mobile").val();
+    var username = $("#signup_username").val();
+    var password = $("#signup_password").val();
+    var cpassword = $("#signup_cpassword").val();
+
+    if(lastname.trim() == '')
+    {
+        ons.notification.alert("Please fill-out last name.");
+    }
+    else if(firstname.trim() == '')
+    {
+        ons.notification.alert("Please fill-out first name.");
+    }
+    else if(mobile.trim() == '')
+    {
+        ons.notification.alert("Please fill-out mobile number.");
+    }
+    else if(mobile.length < 11)
+    {
+        ons.notification.alert("Invalid mobile number.");
+    }
+    else if(address.trim() == '')
+    {
+        ons.notification.alert("Please fill-out address.");
+    }
+    else if(username.trim() == '')
+    {
+        ons.notification.alert("Please fill-out username.");
+    }
+    else if(password != cpassword)
+    {
+        ons.notification.alert("Password and Confirm password do not match.");
+    }
+    else
+    {
+        var data = {
+            id : sp.get("user_id"),
+            lastname : lastname,
+            firstname : firstname,
+            address : address,
+            mobile : mobile,
+            username : username,
+            password : password
+        };
+
+        UpdateAccountData(data);
+    }
+};
+
+var UpdateAccountData = function(data)
+{
+    $.ajax({
+        url : config.url+'/UpdateAccount',
+        method : "POST",
+        data : data,
+        dataType : "json",
+        beforeSend : function(){
+            loading();
+        },
+        success : function(data){
+            if(data.success)
+            {
+                ons.notification.alert("Account successfully updated.");
+                $("#signup_password").val('');
+                $("#signup_cpassword").val('');
             }
             else
             {
