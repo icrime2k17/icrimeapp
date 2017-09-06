@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "mobi.monaca.plugins.Monaca"
+        "mobi.monaca.plugins.Monaca",
+        "mobi.monaca.plugins.WebIntent@1.0.0"
     ],
     "framework_version": "3.5",
     "xcode_version": "7",
