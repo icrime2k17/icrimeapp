@@ -100,6 +100,11 @@
                 //End of AutoComplete Code
 
               // Try HTML5 geolocation.
+                var geo_option = {
+                    frequency: 5000,
+                    timeout: 6000
+                   };
+                   
                 if (navigator.geolocation) {
                   navigator.geolocation.getCurrentPosition(function(position) {
                     var pos = {
@@ -125,9 +130,11 @@
             //          infoWindow.setContent('Location found.');
                     map.setCenter(pos);
                     map.setZoom(16);
-                  }, function() {
+                  },
+                  function() {
                     handleLocationError(true, infoWindow, map.getCenter());
-                  });
+                  },
+                  geo_option);
                 } else {
                   // Browser doesn't support Geolocation
                   handleLocationError(false, infoWindow, map.getCenter());
@@ -144,10 +151,7 @@
             }
             
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        //      infoWindow.setPosition(pos);
-        //      infoWindow.setContent(browserHasGeolocation ?
-        //                            'Error: The Geolocation service failed.' :
-        //                            'Error: Your browser doesn\'t support geolocation.');
+                ons.notification.alert("The Geolocation service failed. Please turn on your GPS.");
             }
 
 
