@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+<!--  <script src="components/loader.js"></script>-->
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="js/jquery-1.12.3.min.js"></script>
+  <script src="js/SessionParser.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <style>
+        .blotter-form
+        {
+              padding: 15px 20px;
+        }
+
+        ons-input,ons-select,textarea
+        {
+            width: 100%;
+        }
+        
+        textarea
+        {
+            height: 50px;
+        }
+        
+        ons-switch
+        {
+            float: right;
+        }
+        
+        .has-error
+        {
+            border : 1px solid #e74c3c;
+        }
+        
+  </style>
+
+  <script>
+    ons.platform.select('android');
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+    });
+    
+    $(document).ready(function(){
+        
+        $.ajax({
+            url : config.url+'/GetUserById',
+            method : "POST",
+            data : {
+                id : sp.get("user_id")
+            },
+            dataType : "json",
+            beforeSend : function(){
+                loading();
+            },
+            success : function(data){
+                if(data.success)
+                {
+                }
+                else
+                {
+                    message(data.message);
+                }
+                dismissLoading();
+            },
+            error : function(){
+                message("Error connecting to server.");
+                dismissLoading();
+            }
+        });
+        
+    });
+  </script>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-graphic">
+            <svg class="circle-loader progress" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="15">
+            </svg>
+        </div>
+    </div>
+    <ons-page>
+        <ons-toolbar>
+            <div class="left"><ons-back-button onclick="window.location.href = 'main.html'"></ons-back-button></div>
+            <div class="center">Blotter</div>
+        </ons-toolbar>
+        <div class="blotter-form">
+            <form id="blotter-data-form">
+            <h3>Incident Information</h3>
+            <div class="incident-fields">
+            <p align="center">
+                <ons-select id="incident" name="incident" modifier="underbar" placeholder="Type of Incident" float>
+                <option value="">Select type of incident</option>
+                <option value="Carnapping">Carnapping</option>
+                <option value="Drug Related Incident (RA 9165)">Drug Related Incident (RA 9165)</option>
+                <option value="Homicide">Homicide</option>
+                <option value="Motornapping">Motornapping</option>
+                <option value="Murder">Murder</option>
+                <option value="Physical Injuries">Physical Injuries</option>
+                <option value="Rape">Rape</option>
+                <option value="Robbery">Robbery</option>
+                <option value="Theft">Theft</option>
+                <option value="VTA (Vehicular Traffic Accident)">VTA (Vehicular Traffic Accident)</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-input type="date" id="date_reported" name="date_reported" modifier="underbar" placeholder="Date Reported" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input type="time" id="time_reported" name="time_reported" modifier="underbar" placeholder="Time Reported" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input type="date" id="date_of_incident" name="date_of_incident" modifier="underbar" placeholder="Date of Incident" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input type="time" id="time_of_incident" name="time_of_incident" modifier="underbar" placeholder="Time of Incident" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="place_of_incident" name="place_of_incident" modifier="underbar" placeholder="Place of Incident" float></ons-input>
+            </p>
+            <p align="center">
+                <textarea id="narrative" name="narrative" modifier="underbar" placeholder="Narrative" float></textarea>
+            </p>
+            </div>
+            <h3>Reporting Person</h3>
+            <p align="center">
+                <ons-input id="r_lname" name="r_lname" modifier="underbar" placeholder="Last name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="r_fname" name="r_fname" modifier="underbar" placeholder="First name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-select id="r_sex" name="r_sex" float>
+                <option value="">Select Sex</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-select id="r_status" name="r_status" float>
+                    <option value="">Select Civil Status</option>
+                    <option value="1">Single</option>
+                    <option value="2">Married</option>
+                    <option value="3">Separated</option>
+                    <option value="4">Widow</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-input type="number" id="r_age" name="r_age"  modifier="underbar" placeholder="Age" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="r_mobile" name="r_mobile" modifier="underbar" placeholder="Mobile" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="r_address" name="r_address" modifier="underbar" placeholder="Address" float></ons-input>
+            </p>
+            <p align="left">
+                <span>Is Victim?</span>
+                <ons-switch id="r_is_victim" name="r_is_victim" checked></ons-switch>
+            </p>
+            
+            
+            <h3>Suspect</h3>
+            <p align="center">
+                <ons-input id="s_lname" name="s_lname" modifier="underbar" placeholder="Last name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_fname" name="s_fname"  modifier="underbar" placeholder="First name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-select id="s_sex" name="s_sex" float>
+                <option value="">Select Sex</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-select id="s_status" name="s_status" float>
+                    <option value="">Select Civil Status</option>
+                    <option value="1">Single</option>
+                    <option value="2">Married</option>
+                    <option value="3">Separated</option>
+                    <option value="4">Widow</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-input type="number" id="s_age" name="s_age" modifier="underbar" placeholder="Age" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_mobile" name="s_mobile" modifier="underbar" placeholder="Mobile" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_address" name="s_address" modifier="underbar" placeholder="Address" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_eye_color" name="s_eye_color" modifier="underbar" placeholder="Eye Color" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_eye_desc" name="s_eye_desc" modifier="underbar" placeholder="Eye Description" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_hair_color" name="s_hair_color"  modifier="underbar" placeholder="Hair Color" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="s_hair_desc" name="s_hair_desc" modifier="underbar" placeholder="Hair Description" float></ons-input>
+            </p>
+            <p align="left">
+                <span>Under the influence?</span>
+                <ons-switch id="s_is_under" name="s_is_under" checked></ons-switch>
+            </p>
+            <p align="center">
+                <ons-input id="s_under_of" name="s_under_of" modifier="underbar" placeholder="Under the influence of" float></ons-input>
+            </p>
+            
+            <h3>Child in conflict with the law</h3>
+            <p align="center">
+                <ons-input id="c_name_of_guardian" name="c_name_of_guardian" modifier="underbar" placeholder="Name of Guardian" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="c_guardian_address" name="c_guardian_address" modifier="underbar" placeholder="Guardian Address" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="c_mobile" name="c_mobile" modifier="underbar" placeholder="Mobile" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="c_diversion" name="c_diversion" modifier="underbar" placeholder="Diversion Mechanism" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="c_dist_features" name="c_dist_features" modifier="underbar" placeholder="Distinguishing Features" float></ons-input>
+            </p>
+            
+            <h3>Victim</h3>
+            <p align="center">
+                <ons-input id="v_lname" name="v_lname" modifier="underbar" placeholder="Last name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="v_fname" name="v_fname" modifier="underbar" placeholder="First name" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-select id="v_sex" name="v_sex" float>
+                <option value="">Select Sex</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-select id="v_status" name="v_status" float>
+                    <option value="">Select Civil Status</option>
+                    <option value="1">Single</option>
+                    <option value="2">Married</option>
+                    <option value="3">Separated</option>
+                    <option value="4">Widow</option>
+                </ons-select>
+            </p>
+            <p align="center">
+                <ons-input type="number" id="v_age" name="v_age" modifier="underbar" placeholder="Age" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="v_mobile" name="v_mobile" modifier="underbar" placeholder="Mobile" float></ons-input>
+            </p>
+            <p align="center">
+                <ons-input id="v_address" name="v_address" modifier="underbar" placeholder="Address" float></ons-input>
+            </p>
+            
+            <p align="right">
+                <ons-button class="submit-blotter-btn">Submit</ons-button>
+            </p>
+            </form>
+        </div>
+    </ons-page>
+</body>
+</html>

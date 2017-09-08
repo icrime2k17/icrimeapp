@@ -207,7 +207,7 @@
                     <ons-list-item onclick = "window.location.href = 'crimeanalysis.html'" tappable>
                         Crime Analysis
                     </ons-list-item>
-                    <ons-list-item class="create-blotter hidden" onclick="fn.load('createblotter.html',2)" tappable>
+                    <ons-list-item class="create-blotter hidden" onclick="window.location.href = 'blotter.html'" tappable>
                         Create a Blotter
                     </ons-list-item>
                     <ons-list-item class="report-a-crime hidden" onclick="fn.load('reportcrime.html',3)" tappable>
@@ -253,27 +253,6 @@
             <div id="map">
             </div>
             
-        </ons-page>
-    </ons-template>
-    
-    <ons-template id="createblotter.html">
-        <ons-page>
-            <ons-toolbar>
-                <div class="left">
-                    <ons-toolbar-button onclick="fn.open()">
-                        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-                    </ons-toolbar-button>
-                </div>
-                <div class="center map-mode">
-                    Create a Blotter
-                </div>
-            </ons-toolbar>
-            <input type="text" id="search">
-            <div id="map" class="crime-pin">
-            </div>
-            <ons-fab class="add-crime" data-mode="1" position="bottom right">
-                <ons-icon icon="md-plus"></ons-icon>
-            </ons-fab>
         </ons-page>
     </ons-template>
     

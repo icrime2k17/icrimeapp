@@ -77,6 +77,60 @@ document.addEventListener('init', function(event) {
         var number = $(this).attr('data-number');
         callStation(number);
     });
+    
+    $('.submit-blotter-btn').click(function(){
+        var data = $("#blotter-data-form").serialize();
+        var has_error = false;
+        $(".incident-fields ons-input, .incident-fields ons-select, .incident-fields textarea").each(function(){
+            if($(this).val().trim() == '')
+            {
+                $(this).addClass('has-error');
+                ons.notification.alert("Please fill-out incident information fields");
+                has_error = true;
+                return false;
+            }
+            else
+            {
+                has_error = false;
+                $(this).removeClass('has-error');
+            }
+        });
+        
+        if(!has_error)
+        {
+            $.ajax({
+                url : config.url+'/submitBlotter',
+                method : "POST",
+                data : data,
+                dataType : "json",
+                beforeSend : function(){
+                    loading();
+                },
+                success : function(data){
+                    if(data.success)
+                    {
+                        dismissLoading();
+                        ons.notification.alert({
+                            message: 'Blotter successfully submitted.',
+                            callback : function(){
+                                window.location.reload();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        dismissLoading();
+                        ons.notification.alert("Error connecting to server.");
+                    }
+                },
+                error : function(){
+                    dismissLoading();
+                    ons.notification.alert("Error connecting to server.");
+                }
+            });
+        }
+    });
+    
 });
 
 var showDialog = function (id) {
@@ -659,7 +713,7 @@ var LoadReportDetail = function()
     var reportDetailObject = JSON.parse(sp.get('current_crime_report'));
     if(reportDetailObject.image != '')
     {
-        reportDetailObject.image_view = "<img src='"+reportDetailObject.image+"'>";
+        reportDetailObject.image_view = "<img style='max-width: 95%;margin: 0 auto;display: block;' src='"+reportDetailObject.image+"'>";
     }
     else
     {
