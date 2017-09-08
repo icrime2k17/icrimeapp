@@ -79,7 +79,11 @@ document.addEventListener('init', function(event) {
     });
     
     $('.submit-blotter-btn').click(function(){
+        var g_lng = map.getCenter().lng();
+        var g_lat = map.getCenter().lat();
+        var geo = '&g_lng='+g_lng+'&g_lat='+g_lat;
         var data = $("#blotter-data-form").serialize();
+        data += geo;
         var has_error = false;
         $(".incident-fields ons-input, .incident-fields ons-select, .incident-fields textarea").each(function(){
             if($(this).val().trim() == '')
