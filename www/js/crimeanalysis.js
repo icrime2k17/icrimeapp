@@ -48,6 +48,8 @@ var initializeCrimeAnalysis = function(current_month)
                                     content: data.content
                             }
                     });
+                    
+                   $(".no-data-found").css("display","none");
                 }
                 else
                 {
