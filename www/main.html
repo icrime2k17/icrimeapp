@@ -130,6 +130,12 @@
             //          infoWindow.setContent('Location found.');
                     map.setCenter(pos);
                     map.setZoom(16);
+                                    
+                    if(mapMenuMode == 3)
+                    {
+                        $("#search").hide();
+                        map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+                    }
                   },
                   function() {
                     handleLocationError(true, infoWindow, map.getCenter());
