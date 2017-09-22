@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-        <script src="components/loader.js"></script>
+        <!--<script src="components/loader.js"></script>-->
         <script src="lib/onsenui/js/onsenui.min.js"></script>
         <script src="js/jquery-1.12.3.min.js"></script>
         <script src="js/MVCParser.js"></script>
@@ -354,18 +354,9 @@
             <p id="report-address">
             </p>
             <div style="height: auto;overflow-y:scroll;">
-                <ons-select id="typeofcrime" onchange="selectedCrime(event)">
-                    <option value="Carnapping">Carnapping</option>
-                    <option value="Drug Related Incident (RA 9165)">Drug Related Incident (RA 9165)</option>
-                    <option value="Homicide">Homicide</option>
-                    <option value="Motornapping">Motornapping</option>
-                    <option value="Murder">Murder</option>
-                    <option value="Physical Injuries">Physical Injuries</option>
-                    <option value="Rape">Rape</option>
-                    <option value="Robbery">Robbery</option>
-                    <option value="Theft">Theft</option>
-                    <option value="VTA (Vehicular Traffic Accident)">VTA (Vehicular Traffic Accident)</option>
-                </ons-select>
+                <div id="crime-selection-holder">
+                    &nbsp;
+                </div>
                 <textarea id="report-detail" placeholder="Detail" rows="5" style="width:95%;"></textarea>
                 <ons-button onclick="capturePhoto();" class="continue-as-regular-user" style="width:98%;text-align:center;">
                     <ons-icon

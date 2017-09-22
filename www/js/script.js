@@ -166,6 +166,7 @@ var add_crime = function(latlong,address,mode)
             .then(function (dialog) {
               dialog.show();
               $('#report-address').html(address);
+              LoadCrimes();
             });
         }
 };
@@ -819,6 +820,38 @@ var LoadBlotterYears = function()
             {
                 $("#year_selector select").append(data.list);
                 initializeCrimeAnalysis(parseInt(data.current_month));
+            }
+            else
+            {
+            }
+        },
+        error : function(){
+            ons.notification.alert("Error connecting to server.");
+        }
+    });
+};
+
+var LoadCrimes = function()
+{
+    $.ajax({
+        url : config.url+'/GetCrimes',
+        method : "POST",
+        data : null,
+        dataType : "json",
+        beforeSend : function(){
+        },
+        success : function(data){
+            if(data.success)
+            {
+                var ListView = '';
+                $.each(data.list,function(key,value){
+                    ListView += mvc.LoadView('CrimeReport/List',value);
+                });
+                var IndexView = mvc.LoadView('CrimeReport/Index',{list : ListView});
+                console.log(IndexView);
+                $("#crime-selection-holder").html("hello");
+                console.log($("#crime-selection-holder"));
+                $("#crime-selection-holder").html(IndexView);
             }
             else
             {
