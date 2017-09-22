@@ -848,9 +848,6 @@ var LoadCrimes = function()
                     ListView += mvc.LoadView('CrimeReport/List',value);
                 });
                 var IndexView = mvc.LoadView('CrimeReport/Index',{list : ListView});
-                console.log(IndexView);
-                $("#crime-selection-holder").html("hello");
-                console.log($("#crime-selection-holder"));
                 $("#crime-selection-holder").html(IndexView);
             }
             else
