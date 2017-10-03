@@ -130,12 +130,25 @@
             //          infoWindow.setContent('Location found.');
                     map.setCenter(pos);
                     map.setZoom(16);
-                                    
-                    if(mapMenuMode == 3)
+                    gmgeocoder.geocode({'latLng': pos}, function(results, status) 
                     {
-                        $("#search").hide();
-                        map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-                    }
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                if(results[0].formatted_address.length>64){
+                                    address = results[0].formatted_address.substring(0,64)+'...';
+                                    sp.set('reporter_address',address);
+                                }
+                                else {
+                                    address = results[0].formatted_address;
+                                    sp.set('reporter_address',address);
+                                }
+                            }                   
+                        }
+                        else {
+                            address = "Geocoder not possible";
+                            sp.set('reporter_address','');
+                        }
+                    });
                   },
                   function() {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -353,6 +366,7 @@
             <h4 class="no-margin">Report</h4>
             <p id="report-address">
             </p>
+            <p style="display: none;" id="reporter_gps_address"></p>
             <div style="height: auto;overflow-y:scroll;">
                 <div id="crime-selection-holder">
                     &nbsp;

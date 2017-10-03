@@ -38,17 +38,17 @@ document.addEventListener('init', function(event) {
                 if (results[0]) {
                     if(results[0].formatted_address.length>64){
                         address = results[0].formatted_address.substring(0,64)+'...';
-                        add_crime(center,address,mode);
+                        add_crime(center,address,sp.get('reporter_address'),mode);
                     }
                     else {
                         address = results[0].formatted_address;
-                        add_crime(center,address,mode);
+                        add_crime(center,address,sp.get('reporter_address'),mode);
                     }
                 }                   
             }
             else {
                 address = "Geocoder not possible";
-                add_crime(center,address,mode);
+                add_crime(center,address,sp.get('reporter_address'),mode);
             }
         });
     });
@@ -149,7 +149,7 @@ var hideDialog = function (id) {
     .hide();
 };
 
-var add_crime = function(latlong,address,mode)
+var add_crime = function(latlong,address,reporter_address,mode)
 {
 //    modes:
 //            1 - Create blotter
@@ -159,12 +159,14 @@ var add_crime = function(latlong,address,mode)
 
         if (dialog) {
           dialog.show();
-          $('#report-address').html(address);
+          $('#reporter_gps_address').html(reporter_address);
+          $('#reporter-address').html(address);
         }
         else {
           ons.createDialog('dialog.html')
             .then(function (dialog) {
               dialog.show();
+              $('#reporter_gps_address').html(reporter_address);
               $('#report-address').html(address);
               LoadCrimes();
             });
@@ -387,7 +389,6 @@ var SubmitReport = function()
     {
         img = sp.get('temp_cam_upload');
     }
-    
     $.ajax({
         url : config.url+'/SubmitReport',
         method : "POST",
@@ -397,6 +398,7 @@ var SubmitReport = function()
             g_lat : map.getCenter().lat(),
             g_long : map.getCenter().lng(),
             address : $("#report-address").html(),
+            reporter_gps_address : $("#reporter_gps_address").html(),
             image : img,
             user_id : sp.get('user_id')
         },
