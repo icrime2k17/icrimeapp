@@ -36,8 +36,8 @@ document.addEventListener('init', function(event) {
         gmgeocoder.geocode({'latLng': center}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
-                    if(results[0].formatted_address.length>64){
-                        address = results[0].formatted_address.substring(0,64)+'...';
+                    if(results[0].formatted_address.length>125){
+                        address = results[0].formatted_address.substring(0,125)+'...';
                         add_crime(center,address,sp.get('reporter_address'),mode);
                     }
                     else {

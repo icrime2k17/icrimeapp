@@ -134,8 +134,8 @@
                     {
                         if (status == google.maps.GeocoderStatus.OK) {
                             if (results[0]) {
-                                if(results[0].formatted_address.length>64){
-                                    address = results[0].formatted_address.substring(0,64)+'...';
+                                if(results[0].formatted_address.length>125){
+                                    address = results[0].formatted_address.substring(0,125)+'...';
                                     sp.set('reporter_address',address);
                                 }
                                 else {
